@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery - Menu & Cart</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🍰 Sweet Bakery</h1>
+        <p>Fresh Baked Goods Daily</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Menu</a>
+        <a href="admin.html">Admin</a>
+        <a href="sales.html">Sales Report</a>
+    </nav>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="menu-section">
+                <h2>Our Menu</h2>
+                
+                <div class="category-filter">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="Cake">Cake</button>
+                    <button class="category-btn" data-category="Bun">Bun</button>
+                    <button class="category-btn" data-category="Biscuit">Biscuit</button>
+                    <button class="category-btn" data-category="Cookies">Cookies</button>
+                    <button class="category-btn" data-category="Sweets">Sweets</button>
+                    <button class="category-btn" data-category="Samosa">Samosa</button>
+                    <button class="category-btn" data-category="Vada">Vada</button>
+                    <button class="category-btn" data-category="Ice Cream">Ice Cream</button>
+                </div>
+
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Menu items will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <div class="cart-section">
+                <h2>Shopping Cart</h2>
+                <div id="cartItems" class="cart-items">
+                    <div class="empty-cart">Your cart is empty</div>
+                </div>
+                <div class="cart-total" id="cartTotal">
+                    Total: ₹0.00
+                </div>
+                <div class="cart-actions">
+                    <button class="btn btn-primary" id="payNowBtn">Pay Now</button>
+                    <button class="btn btn-secondary" id="printBillBtn">Print Bill</button>
+                    <button class="btn btn-danger" id="clearCartBtn">Clear Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bill Modal (hidden, shown when printing) -->
+    <div id="billModal" class="hidden" style="display: none;">
+        <div class="bill-header">
+            <h1>🍰 Sweet Bakery</h1>
+            <p>Invoice</p>
+        </div>
+        <div class="bill-details" id="billDetails"></div>
+        <div class="bill-items" id="billItems"></div>
+        <div class="cart-total" id="billTotal"></div>
+    </div>
+
+    <!-- QR Code Payment Modal -->
+    <div id="qrModal" class="qr-modal hidden">
+        <div class="qr-modal-content">
+            <span class="qr-close" id="qrCloseBtn">&times;</span>
+            <h2>📱 Pay with PhonePe</h2>
+            <p class="qr-instruction">Scan the QR code to complete payment</p>
+            <div class="qr-code-container">
+                <div id="qrCode"></div>
+            </div>
+            <div class="qr-amount">
+                <strong>Amount to Pay: <span id="qrAmount">₹0.00</span></strong>
+            </div>
+            <p class="qr-note">After payment, click "Payment Done" to complete the order</p>
+            <button class="btn btn-primary" id="paymentDoneBtn">Payment Done</button>
+            <button class="btn btn-secondary" id="qrCancelBtn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery - Admin Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🍰 Sweet Bakery</h1>
+        <p>Admin Panel - Manage Menu Items</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Menu</a>
+        <a href="admin.html">Admin</a>
+        <a href="sales.html">Sales Report</a>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-section">
+            <h2>Add/Edit Menu Item</h2>
+            <form id="itemForm">
+                <input type="hidden" id="itemId">
+                
+                <div class="form-group">
+                    <label for="itemName">Item Name *</label>
+                    <input type="text" id="itemName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemCategory">Category *</label>
+                    <select id="itemCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Cake">Cake</option>
+                        <option value="Bun">Bun</option>
+                        <option value="Biscuit">Biscuit</option>
+                        <option value="Cookies">Cookies</option>
+                        <option value="Sweets">Sweets</option>
+                        <option value="Samosa">Samosa</option>
+                        <option value="Vada">Vada</option>
+                        <option value="Ice Cream">Ice Cream</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemPrice">Price (₹) *</label>
+                    <input type="number" id="itemPrice" step="0.01" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemImage">Image <span id="imageRequired">*</span></label>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                        <input type="file" id="itemImage" accept="image/*" style="flex: 1; min-width: 200px;">
+                        <button type="button" class="btn btn-secondary" id="fetchImageBtn" style="white-space: nowrap;">Fetch Image</button>
+                    </div>
+                    <small style="color: #666; display: block; margin-bottom: 0.5rem;">Or click "Fetch Image" to get an image from Unsplash based on item name/category</small>
+                    <img id="imagePreview" class="image-preview hidden" alt="Preview">
+                </div>
+
+                <div class="form-group">
+                    <label for="itemDescription">Description</label>
+                    <textarea id="itemDescription" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Save Item</button>
+                    <button type="button" class="btn btn-danger" id="cancelBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="admin-section">
+            <h2>Payment Settings</h2>
+            <div class="form-group">
+                <label for="phonepeQRCodeImage">PhonePe QR Code Image</label>
+                <input type="file" id="phonepeQRCodeImage" accept="image/*" style="margin-bottom: 0.5rem;">
+                <small style="color: #666; display: block; margin-bottom: 0.5rem;">Upload your PhonePe QR code image. This will be shown when customers click "Pay Now".</small>
+                <img id="qrCodePreview" class="image-preview hidden" alt="QR Code Preview" style="max-width: 300px;">
+                <div style="margin-top: 0.5rem;">
+                    <input type="text" id="qrCodeImagePath" placeholder="Or enter image path (e.g., images/phonepe-qr.png)" style="width: 100%; margin-top: 0.5rem;">
+                </div>
+                <button type="button" class="btn btn-primary" id="saveQRCodeBtn" style="margin-top: 1rem;">Save QR Code</button>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h2>Show Payment QR Code</h2>
+            <div class="form-group">
+                <label for="paymentAmount">Payment Amount (₹)</label>
+                <input type="number" id="paymentAmount" step="0.01" min="0" placeholder="Enter amount" value="0.00" style="margin-bottom: 1rem;">
+                <small style="color: #666; display: block; margin-bottom: 1rem;">Enter the payment amount and click "Show QR Code" to display the PhonePe QR code for customers to scan.</small>
+                <button type="button" class="btn btn-primary" id="showQRCodeBtn">Show QR Code</button>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <h2>Menu Items</h2>
+            <div class="items-list" id="itemsList">
+                <!-- Items will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Payment Modal -->
+    <div id="adminQrModal" class="qr-modal hidden">
+        <div class="qr-modal-content">
+            <span class="qr-close" id="adminQrCloseBtn">&times;</span>
+            <h2>📱 Pay with PhonePe</h2>
+            <p class="qr-instruction">Scan the QR code to complete payment</p>
+            <div class="qr-code-container">
+                <div id="adminQrCode"></div>
+            </div>
+            <div class="qr-amount">
+                <strong>Amount to Pay: <span id="adminQrAmount">₹0.00</span></strong>
+            </div>
+            <p class="qr-note">Show this QR code to the customer for payment</p>
+            <button class="btn btn-secondary" id="adminQrCancelBtn">Close</button>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
+

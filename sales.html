@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery - Sales Report</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>🍰 Sweet Bakery</h1>
+        <p>Monthly Sales Report</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Menu</a>
+        <a href="admin.html">Admin</a>
+        <a href="sales.html">Sales Report</a>
+    </nav>
+
+    <div class="sales-container">
+        <div class="filter-section">
+            <h2>Filter Report</h2>
+            <div class="filter-group">
+                <label for="filterMonth">Month:</label>
+                <input type="month" id="filterMonth">
+                <button class="btn btn-primary" id="filterBtn">Filter</button>
+                <button class="btn btn-secondary" id="showAllBtn">Show All</button>
+            </div>
+        </div>
+
+        <div class="report-section">
+            <h2>Sales Summary</h2>
+            <div class="report-summary" id="summaryCards">
+                <!-- Summary cards will be loaded here -->
+            </div>
+
+            <h3>Transaction Details</h3>
+            <div style="overflow-x: auto;">
+                <table id="transactionsTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Transaction ID</th>
+                            <th>Items</th>
+                            <th>Total (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsBody">
+                        <!-- Transactions will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="mt-1">Item-wise Sales</h3>
+            <div style="overflow-x: auto;">
+                <table id="itemsTable">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>Quantity Sold</th>
+                            <th>Total Revenue (₹)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsBody">
+                        <!-- Item sales will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/sales.js"></script>
+</body>
+</html>
+
